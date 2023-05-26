@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
+            $table->string('name',128);
+            $table->integer('basePrice_cents');
+            $table->integer('duration_minutes');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
