@@ -14,10 +14,15 @@ class BookingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index():View
+    public function index(Request $request):View
     {
+        $upcoming = Booking::whereBelongsTo($request->user(),'server')
+                    ->where('booking_time','>=',now())
+                    ->get();
+        \Log::debug("booking.index: Upcoming -> $upcoming");
         return View("bookings.index",[
-            'bookings'=>Booking::all(),
+            'upcoming'=>$upcoming,
+            'bookings'=>Booking::all()->diff($upcoming),
             'services'=>Service::all(),
         ]);
     }

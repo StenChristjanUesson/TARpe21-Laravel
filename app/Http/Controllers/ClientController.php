@@ -14,6 +14,7 @@ class ClientController extends Controller
      */
     public function index():View
     {
+        \Log::debug("Hello from clients.index");
         return View("clients.index",[
             'bookings'=>Booking::all()
                         ->whereNull('client_id')

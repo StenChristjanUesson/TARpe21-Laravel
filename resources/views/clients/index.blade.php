@@ -36,14 +36,13 @@
                         <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
                         @endunless --}}
                     </div>
+                    <div class="mr-2">
                     <form method="POST" action="{{ route('clients.update', $booking) }}">
                         @csrf
                         @method('patch')
                         <x-primary-button>{{ __('Book now!') }}</x-primary-button>
                     </form>
-                    <a href="{{route('clients.update', $booking)}}">
-                        {{ __('Book now') }}
-                    </a>
+                    </div>
                     {{-- @if ($booking->client->is(auth()->user()))
                     <a href="{{route('clients.destroy', $booking)}}">
                         {{ __('Cancel booking') }}
